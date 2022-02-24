@@ -14,7 +14,8 @@ jobs:
         id: changed-files-specific
         uses: tj-actions/changed-files@v17
         with:
-          files: test1/*
+          path: test1
+          since_last_remote_commit: "true"
 
       - name: Change detection
         if: steps.changed-files-specific.outputs.any_changed == 'true'
