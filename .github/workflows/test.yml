@@ -7,4 +7,19 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - run: ls -l
+        with:
+          fetch-depth: 2  
+
+      - name: Get specific changed files
+        id: changed-files-specific
+        uses: tj-actions/changed-files@v17
+        with:
+          files: test1/*
+
+      - name: Change detection
+        if: steps.changed-files-specific.outputs.any_changed == 'true'
+        run: echo "The files under the test1 directory have been changed!"
+
+      - name: No change detection
+        if: steps.changed-files-specific.outputs.any_changed == 'false'
+        run: echo "The files under the test1 directory were not changed!"
