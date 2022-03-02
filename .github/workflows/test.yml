@@ -19,7 +19,14 @@ jobs:
 
       - name: Change detection
         if: steps.changed-files-specific.outputs.any_modified == 'true'
-        run: echo "The files under the test3 directory have been changed!"
+        run: |
+          echo "The files under the test3 directory have been changed!"
+          for file in ${{ steps.changed-files-specific.outputs.all_changed_files }}; do
+            echo "$file was changed"
+          done
+          for file in ${{ steps.changed-files-specific.outputs.deleted_files }}; do
+            echo "$file was deleted"
+          done
 
       - name: No change detection
         if: steps.changed-files-specific.outputs.any_modified == 'false'
