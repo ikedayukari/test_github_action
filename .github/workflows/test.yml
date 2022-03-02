@@ -11,7 +11,7 @@ jobs:
           fetch-depth: 0  
 
       - name: change git config
-        run: git --version
+        run: git config diff.renames false
 
       - name: Get specific changed files
         id: changed-files-specific
@@ -34,3 +34,6 @@ jobs:
       - name: No change detection
         if: steps.changed-files-specific.outputs.any_modified == 'false'
         run: echo "The files under the test3 directory were not changed!"
+
+      - name: check
+        run: git config diff.renames
