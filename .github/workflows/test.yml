@@ -18,9 +18,9 @@ jobs:
           since_last_remote_commit: "true"
 
       - name: Change detection
-        if: steps.changed-files-specific.outputs.any_changed == 'true'
+        if: steps.changed-files-specific.outputs.any_modified == 'true'
         run: echo "The files under the test3 directory have been changed!"
 
       - name: No change detection
-        if: steps.changed-files-specific.outputs.any_changed == 'false'
+        if: steps.changed-files-specific.outputs.any_modified == 'false'
         run: echo "The files under the test3 directory were not changed!"
