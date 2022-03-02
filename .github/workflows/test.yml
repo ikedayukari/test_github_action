@@ -11,7 +11,7 @@ jobs:
           fetch-depth: 0  
 
       - name: change git config
-        run: git config diff.renames
+        run: git --version
 
       - name: Get specific changed files
         id: changed-files-specific
