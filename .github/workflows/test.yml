@@ -10,6 +10,9 @@ jobs:
         with:
           fetch-depth: 0  
 
+      - name: change git config
+        run: cat -n ~/.gitconfig
+
       - name: Get specific changed files
         id: changed-files-specific
         uses: tj-actions/changed-files@v17
