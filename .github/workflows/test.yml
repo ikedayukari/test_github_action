@@ -36,4 +36,4 @@ jobs:
         run: echo "The files under the test3 directory were not changed!"
 
       - name: check
-        run: git config diff.renames
+        run: df -h
