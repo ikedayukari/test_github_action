@@ -36,7 +36,7 @@ jobs:
         run: echo "The files under the test3 directory were not changed!"
 
       - name: Commits
-        run: echo ${{ toJson(github.event.commits) }}
+        run: echo "${{ toJson(github.event.commits) }}"
       
       - name: Commits Length
         run: echo ${#github.event.commits[@]}
