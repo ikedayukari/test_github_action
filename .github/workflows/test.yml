@@ -22,7 +22,7 @@ jobs:
       - name: Commits Length
         run: |
           i=0
-          for e in ${github.event.commits}; do
+          for e in ${github.event.commits.*}; do
               let i++
           done
           echo "$i"
