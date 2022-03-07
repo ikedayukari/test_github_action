@@ -28,6 +28,10 @@ jobs:
         with:
           fetch-depth: $(( steps.commits_length.outputs.commits_count + 2 ))
 
+      - name: check depth
+        run: |
+          git log --pretty=oneline
+
       - name: change git config
         run: git config diff.renames false
 
