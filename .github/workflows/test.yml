@@ -30,6 +30,7 @@ jobs:
 
       - name: check depth
         run: |
+          echo steps.commits_length.outputs.commits_count
           git log --pretty=oneline
 
       - name: change git config
