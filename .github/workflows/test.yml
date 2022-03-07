@@ -23,7 +23,7 @@ jobs:
         env:
           COMMITS: ${{ toJson(github.event.commits) }}
         run: |
-          echo "$COMMITS | jq '. | length"
+          echo "${{ $COMMITS | jq '. | length }}"
 
       - uses: actions/checkout@v2
         with:
