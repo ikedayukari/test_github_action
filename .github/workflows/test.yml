@@ -20,12 +20,10 @@ jobs:
       #     echo "removed ${{ github.event.commits[0][removed] }}"
 
       - name: Commits Length
+        env:
+          COMMITS: ${{ toJson(github.event.commits) }}
         run: |
-          i=0
-          for e in ${github.event.commits.*}; do
-              let i++
-          done
-          echo "$i"
+          echo '$COMMITS | jq '. | length'
 
       - uses: actions/checkout@v2
         with:
