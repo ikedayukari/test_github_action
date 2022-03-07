@@ -12,12 +12,12 @@ jobs:
       - name: Commits
         run: echo "${{ toJson(github.event.commits) }}"
       
-      - name: Commits
-        run: |
-          echo "commits ${{ toJson(github.event.commits) }}"
-          echo "added ${{ github.event.commits[0][added] }}"
-          echo "modified ${{ github.event.commits[0][modified] }}"
-          echo "removed ${{ github.event.commits[0][removed] }}"
+      # - name: Commits
+      #   run: |
+      #     echo "commits ${{ toJson(github.event.commits) }}"
+      #     echo "added ${{ github.event.commits[0][added] }}"
+      #     echo "modified ${{ github.event.commits[0][modified] }}"
+      #     echo "removed ${{ github.event.commits[0][removed] }}"
 
       - name: Commits Length
         run: echo "${{#(github.event.commits)[@]}}"
