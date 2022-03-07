@@ -6,6 +6,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Objects
+        run: echo "${{ toJson(github) }}"
+
       - name: Commits
         run: echo "${{ toJson(github.event.commits) }}"
       
@@ -17,7 +20,7 @@ jobs:
           echo "removed ${{ github.event.commits[0][removed] }}"
 
       - name: Commits Length
-        run: echo "${{#github.event.commits[@]}}"
+        run: echo "${{#(github.event.commits)[@]}}"
 
 
       - uses: actions/checkout@v2
