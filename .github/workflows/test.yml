@@ -6,6 +6,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Commits
+        run: echo "${{ toJson(github.event.commits) }}"
+      
+      - name: Commits
+        run: |
+          echo "commits ${{ toJson(github.event.commits) }}"
+          echo "added ${{ github.event.commits[0][added] }}"
+          echo "modified ${{ github.event.commits[0][modified] }}"
+          echo "removed ${{ github.event.commits[0][removed] }}"
+
+      - name: Commits Length
+        run: echo "${{#github.event.commits[@]}}"
+
+
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0  
@@ -34,16 +48,3 @@ jobs:
       - name: No change detection
         if: steps.changed-files-specific.outputs.any_modified == 'false'
         run: echo "The files under the test3 directory were not changed!"
-
-      - name: Commits
-        run: echo "${{ toJson(github.event.commits) }}"
-      
-      - name: Commits
-        run: |
-          echo "commits ${{ toJson(github.event.commits) }}"
-          echo "added ${{ github.event.commits[0][added] }}"
-          echo "modified ${{ github.event.commits[0][modified] }}"
-          echo "removed ${{ github.event.commits[0][removed] }}"
-
-      - name: Commits Length
-        run: echo "${#github.event.commits[@]}"
