@@ -26,7 +26,7 @@ jobs:
 
       - uses: actions/checkout@v2
         with:
-          fetch-depth: ${{ expr steps.commits_length.outputs.commits_count 1 }}  
+          fetch-depth: ${{ steps.commits_length.outputs.commits_count + 2 }}  
 
       - name: change git config
         run: git config diff.renames false
