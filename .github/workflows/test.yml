@@ -20,12 +20,13 @@ jobs:
       #     echo "removed ${{ github.event.commits[0][removed] }}"
 
       - name: Commits Length
+        id: commits_length
         run: |
-          echo '${{ toJSON(github.event.commits) }}' | jq '. | length'
+          echo ::set-output name=commits_count::$(echo '${{ toJSON(github.event.commits) }}' | jq '. | length')
 
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 0  
+          fetch-depth: ${{ expr steps.commits_length.outputs.commits_count 1 }}  
 
       - name: change git config
         run: git config diff.renames false
