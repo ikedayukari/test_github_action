@@ -20,7 +20,7 @@ jobs:
       #     echo "removed ${{ github.event.commits[0][removed] }}"
 
       - name: Commits Length
-        run: echo "${{#(github.event.commits)[@]}}"
+        run: echo "${{\#(github.event.commits)[@]}}"
 
 
       - uses: actions/checkout@v2
