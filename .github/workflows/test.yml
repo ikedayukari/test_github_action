@@ -42,7 +42,7 @@ jobs:
         uses: tj-actions/changed-files@v17
         with:
           files: '**'
-          files_ignore: | 
+          files_ignore: |
             'test3/path1/**'
             'test1/*'
           since_last_remote_commit: "true"
