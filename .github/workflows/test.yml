@@ -28,7 +28,6 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: ${{ steps.commits_length.outputs.commits_count }}
-          path: dir1
 
       - name: check depth
         run: |
@@ -42,13 +41,10 @@ jobs:
         id: changed-files-specific
         uses: tj-actions/changed-files@v17
         with:
-          files: |
-            **
           files_ignore: |
             test3/path1/**
             test1/**
           since_last_remote_commit: "true"
-        working-directory: ./dir1
 
       - name: Change detection
         if: steps.changed-files-specific.outputs.any_modified == 'true'
