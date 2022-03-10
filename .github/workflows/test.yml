@@ -29,8 +29,10 @@ jobs:
         with:
           fetch-depth: ${{ steps.commits_length.outputs.commits_count }}
 
-      - name: check directory
-        run: cd ../ && ls -a
+      - name: git log
+        run: |
+          echo ${{ steps.commits_length.outputs.commits_count }}
+          git log --pretty=oneline        
 
       - name: change git config
         run: git config diff.renames false
