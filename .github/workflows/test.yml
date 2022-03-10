@@ -43,7 +43,9 @@ jobs:
         with:
           files: |
             '**'
+          files_ignore: |
             '!test3/path1/**'
+            'test1/**'
           since_last_remote_commit: "true"
 
       - name: Change detection
