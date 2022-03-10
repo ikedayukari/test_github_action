@@ -19,7 +19,7 @@ jobs:
       #     echo "modified ${{ github.event.commits[0][modified] }}"
       #     echo "removed ${{ github.event.commits[0][removed] }}"
 
-      - name: Commits Length
+      - name: commits Length
         id: commits_length
         run: |
           echo $(( 2 + $(echo '${{ toJSON(github.event.commits) }}' | jq 'length')))
@@ -29,10 +29,8 @@ jobs:
         with:
           fetch-depth: ${{ steps.commits_length.outputs.commits_count }}
 
-      - name: check depth
-        run: |
-          echo ${{ steps.commits_length.outputs.commits_count }}
-          git log --pretty=oneline
+      - name: check directory
+        run: cd ../ && ls -a
 
       - name: change git config
         run: git config diff.renames false
@@ -41,6 +39,8 @@ jobs:
         id: changed-files-specific
         uses: tj-actions/changed-files@v17
         with:
+          files: |
+            **
           files_ignore: |
             test3/path1/**
             test1/**
