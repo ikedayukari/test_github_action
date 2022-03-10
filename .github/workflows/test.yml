@@ -53,4 +53,4 @@ jobs:
 
       - name: No change detection
         if: steps.changed-files-specific.outputs.other_changed_files == ''
-        run: echo "The files under the test3 directory were not changed!"
+        run: echo "The files under the directory were not changed!"
