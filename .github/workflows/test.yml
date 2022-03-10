@@ -48,7 +48,7 @@ jobs:
             test3/path1/**
             test1/**
           since_last_remote_commit: "true"
-        working-directory: dir1
+        working-directory: ./dir1
 
       - name: Change detection
         if: steps.changed-files-specific.outputs.any_modified == 'true'
