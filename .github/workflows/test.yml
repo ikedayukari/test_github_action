@@ -42,17 +42,18 @@ jobs:
         uses: tj-actions/changed-files@v17
         with:
           files: '**'
-          files_ignore: '.github/**'
+          #files_ignore: '.github/**'
           since_last_remote_commit: "true"
 
       - name: Change detection
-        if: "!(steps.changed-files-specific.outputs.other_changed_files == '')"
+        #if: "!(steps.changed-files-specific.outputs.other_changed_files == '')"
         run: |
           echo "${{ steps.changed-files-specific.outputs.other_changed_files }}"
-          for file in ${{ steps.changed-files-specific.outputs.other_changed_files }}; do
-            echo "$file was changed"
-          done
+          .github/workflows/get_diff.sh ${{ steps.changed-files-specific.outputs.other_changed_files }}
+          # for file in ${{ steps.changed-files-specific.outputs.other_changed_files }}; do
+          #   echo "$file was changed"
+          # done
 
-      - name: No change detection
-        if: steps.changed-files-specific.outputs.other_changed_files == ''
-        run: echo "The files under the directory were not changed!"
+      # - name: No change detection
+      #   if: steps.changed-files-specific.outputs.other_changed_files == ''
+      #   run: echo "The files under the directory were not changed!"
