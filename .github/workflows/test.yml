@@ -48,8 +48,8 @@ jobs:
       - name: Change detection
         #if: "!(steps.changed-files-specific.outputs.other_changed_files == '')"
         run: |
-          echo "${{ steps.changed-files-specific.outputs.other_changed_files }}"
-          .github/workflows/get_diff.sh ${{ steps.changed-files-specific.outputs.other_changed_files }}
+          echo "${{ steps.changed-files-specific.outputs.all_changed_files }}"
+          .github/workflows/get_diff.sh ${{ steps.changed-files-specific.outputs.all_changed_files }}
           # for file in ${{ steps.changed-files-specific.outputs.other_changed_files }}; do
           #   echo "$file was changed"
           # done
