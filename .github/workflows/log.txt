@@ -1,4 +1,4 @@
-abcde: dir1/a.txt to aa://abcde/a.txt         
+abcde: test1/test1.txt to aa://abcde/a.txt         
 abcde: dir1/b.txt to aa://abcde/b.txt         
 abcde: dir1/c.txt to aa://abcde/c.txt         
 abcde: dir1/d.txt to aa://abcde/d.txt
