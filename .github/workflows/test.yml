@@ -9,12 +9,11 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.event.before }}
-          fetch-depth: 1
-          run: |
-            git pull --prune
 
       - name: git log
         run: |
+          git pull --prune
+          git checkout ${{ github.event.after }}
           git log --pretty=oneline        
 
       - name: change git config
