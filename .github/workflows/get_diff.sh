@@ -6,4 +6,6 @@ combine=(${upload_files[@]} "$@")
 echo "combine : ${combine[@]}"
 diff=$((printf '%s\n' ${combine[@]} | sort -u; printf '%s\n' ${upload_files[@]}) | sort | uniq -u)
 echo "diff : ${diff[@]}"
-
+for file in "${diff[@]}"; do
+    echo "${file}"
+done

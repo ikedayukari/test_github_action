@@ -6,19 +6,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Objects
-        run: echo "${{ toJson(github) }}"
-
-      - name: Commits
-        run: echo "${{ toJson(github.event.commits) }}"
-      
-      # - name: Commits
-      #   run: |
-      #     echo "commits ${{ toJson(github.event.commits) }}"
-      #     echo "added ${{ github.event.commits[0][added] }}"
-      #     echo "modified ${{ github.event.commits[0][modified] }}"
-      #     echo "removed ${{ github.event.commits[0][removed] }}"
-
       - name: commits Length
         id: commits_length
         run: |
@@ -42,7 +29,6 @@ jobs:
         uses: tj-actions/changed-files@v17
         with:
           files: '**'
-          #files_ignore: '.github/**'
           since_last_remote_commit: "true"
 
       - name: Change detection
@@ -50,9 +36,6 @@ jobs:
         run: |
           echo "${{ steps.changed-files-specific.outputs.all_changed_files }}"
           .github/workflows/get_diff.sh "${{ steps.changed-files-specific.outputs.all_changed_files }}"
-          # for file in ${{ steps.changed-files-specific.outputs.other_changed_files }}; do
-          #   echo "$file was changed"
-          # done
 
       # - name: No change detection
       #   if: steps.changed-files-specific.outputs.other_changed_files == ''
