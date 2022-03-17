@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.before }}:refs/remotes/origin/master
+          ref: ${{ github.event.before }}
 
       - name: git log
         run: |
