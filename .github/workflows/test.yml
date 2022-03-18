@@ -6,37 +6,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: commits Length
-        id: commits_length
+      - name: test
         run: |
-          echo $(( 2 + $(echo '${{ toJSON(github.event.commits) }}' | jq 'length')))
-          echo ::set-output name=commits_count::$(echo $(( 2 + $(echo '${{ toJSON(github.event.commits) }}' | jq 'length'))))
+          if [ -e ../test.txt ]; then \
+              echo "file is found." \
+          else \
+              echo "file is NOT found." \
+          fi
+          if [ -s ../test.txt ]; then \
+            echo "file is NOT empty." \
+          else \
+            echo "file is empty." \
+          fi
 
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: ${{ steps.commits_length.outputs.commits_count }}
-
-      - name: git log
-        run: |
-          echo ${{ steps.commits_length.outputs.commits_count }}
-          git log --pretty=oneline        
-
-      - name: change git config
-        run: git config diff.renames false
-
-      - name: Get specific changed files
-        id: changed-files-specific
-        uses: tj-actions/changed-files@v17
-        with:
-          files: '**'
-          since_last_remote_commit: "true"
-
-      - name: Change detection
-        #if: "!(steps.changed-files-specific.outputs.other_changed_files == '')"
-        run: |
-          echo "${{ steps.changed-files-specific.outputs.all_changed_files }}"
-          .github/workflows/get_diff.sh "${{ steps.changed-files-specific.outputs.all_changed_files }}"
-
-      # - name: No change detection
-      #   if: steps.changed-files-specific.outputs.other_changed_files == ''
-      #   run: echo "The files under the directory were not changed!"
