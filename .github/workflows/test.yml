@@ -9,13 +9,8 @@ jobs:
       - name: test
         run: |
           if [ -e ../test.txt ]; then \
-              echo "file is found."; \
+               curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/octocat; \
           else \
-              echo "file is NOT found."; \
-          fi
-          if [ -s ../test.txt ]; then \
-            echo "file is NOT empty."; \
-          else \
-            echo "file is empty."; \
+              curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/octocat; \
           fi
 
