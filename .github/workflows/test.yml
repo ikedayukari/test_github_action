@@ -8,6 +8,9 @@ jobs:
       BRANCH: ${{ github.ref_name }}
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - name: test
         run: |
           .github/workflows/get_diff.sh
