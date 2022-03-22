@@ -4,10 +4,11 @@ on: push
 jobs:
   TestJob:
     runs-on: ubuntu-latest
+    env:
+      BRANCH: ${{ github.ref_name }}
 
     steps:
       - name: test
         run: |
-          echo "${{ github.ref_name }}"
           .github/workflows/get_diff.sh
 
