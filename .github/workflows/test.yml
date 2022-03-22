@@ -9,4 +9,5 @@ jobs:
       - name: test
         run: |
           echo "${{ github.ref_name }}"
+          .github/workflows/get_diff.sh
 
