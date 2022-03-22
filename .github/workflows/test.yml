@@ -8,5 +8,5 @@ jobs:
     steps:
       - name: test
         run: |
-          echo "${{ env.GITHUB_REF_NAME }}"
+          echo "${{ github.ref_name }}"
 
