@@ -8,9 +8,5 @@ jobs:
     steps:
       - name: test
         run: |
-          if [ -e ../test.txt ]; then \
-               curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/octocat; \
-          else \
-              curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/octocat; \
-          fi
+          echo "${{ GITHUB_REF_NAME }}"
 
