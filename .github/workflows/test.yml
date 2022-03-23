@@ -17,6 +17,8 @@ jobs:
           echo "::set-output name=param::12345"
 
       - name: Test2
+        env:
+          PARAM: ${{steps.test1.outputs.param}}
         run: |
           .github/workflows/get_diff.sh
 
