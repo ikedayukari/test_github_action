@@ -8,9 +8,14 @@ jobs:
       BRANCH: ${{ github.ref_name }}
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ env.BRANCH }}
+
       - name: Test1
         id: test1
         run: |
           echo "Hi!" >> test.txt
-          curl -s -X POST -H "X-ChatWorkToken: ${{ secrets.ABCDEF }}" -F "file=@test.txt" -F $'message=【 ブランチ：${BRANCH} 】\n${{ github.event.head_commit.message }}(${{ github.event.head_commit.author.name }})' "https://api.chatwork.com/v2/rooms/${{ secrets.ROOM_ID }}/files";
+          curl -s -X POST -H "X-ChatWorkToken: ${{ secrets.ABCDEF }}" -F "file=@test.txt" -F $'message=【 ブランチ：${{ env.BRANCH }} 】\n${{ github.event.head_commit.message }}(${{ github.event.head_commit.author.name }})' "https://api.chatwork.com/v2/rooms/${{ secrets.ROOM_ID }}/files";
 
