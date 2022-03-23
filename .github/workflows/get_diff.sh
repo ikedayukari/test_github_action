@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-echo "${ github.ref_name }"
 echo "${BRANCH}"
+echo "${steps.test1.outputs.param}"

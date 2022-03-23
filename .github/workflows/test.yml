@@ -11,7 +11,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: test
+      - name: Test1
+        id: test1
+        run: |
+          echo "::set-output name=param::12345"
+
+      - name: Test2
         run: |
           .github/workflows/get_diff.sh
 
