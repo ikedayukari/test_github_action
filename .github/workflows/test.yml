@@ -11,7 +11,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          ref: ${BRANCH}
+          ref: ${{ BRANCH }}
 
       - name: Test1
         id: test1
