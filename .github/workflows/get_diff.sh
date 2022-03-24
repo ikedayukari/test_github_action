@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if [ -s test.txt ]; then
+if [ -e test.txt ]; then
   curl -s -X POST "https://api.chatwork.com/v2/rooms/${ROOM_ID}/files" \
     -H "X-ChatWorkToken: ${ABCDEF}" \
     -F "file=@test.txt" \
