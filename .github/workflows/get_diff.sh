@@ -11,7 +11,7 @@ EOS
 else
   curl -s -X POST "https://api.chatwork.com/v2/rooms/${ROOM_ID}/messages" \
     -H "X-ChatWorkToken: ${ABCDEF}" \
-    -d "body="@- <<EOS
-${MESSAGE}(${AUTHOR})
+    -d @- <<EOS
+body=${MESSAGE}(${AUTHOR})
 EOS
 fi
