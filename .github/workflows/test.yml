@@ -19,9 +19,9 @@ jobs:
           echo "Hi!" >> test.txt
           curl -s -X POST -H "X-ChatWorkToken: ${{ secrets.ABCDEF }}"  \
           -F "file=@test.txt"  \
-          -F @- <<EOS
-          message=【 ブランチ：${{ env.BRANCH }} 】
+          -F "message="@- <<EOS
+          【 ブランチ：${{ env.BRANCH }} 】
           ${{ github.event.head_commit.message }}(${{ github.event.head_commit.author.name }})
           EOS \
-          "https://api.chatwork.com/v2/rooms/${{ secrets.ROOM_ID }}/files";
+          "https://api.chatwork.com/v2/rooms/${{ secrets.ROOM_ID }}/files"
 
