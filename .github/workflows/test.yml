@@ -16,7 +16,7 @@ jobs:
 
       - name: Get specific changed files
         id: changed-files-specific
-        uses: tj-actions/changed-files@v17
+        uses: tj-actions/changed-files@v34
         with:
           files: '**'
           files_ignore: test1/**
