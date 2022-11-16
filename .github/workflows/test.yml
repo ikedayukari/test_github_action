@@ -13,15 +13,28 @@ jobs:
         with:
           ref: ${{ env.BRANCH }}
 
-      - name: Test1
-        id: test1
-        env:
-          ABCDEF: ${{ secrets.ABCDEF }}
-          ROOM_ID: ${{ secrets.ROOM_ID }}
-          MESSAGE: ${{ github.event.head_commit.message }}
-          AUTHOR: ${{ github.event.head_commit.author.name }}
+      - name: Get specific changed files
+        id: changed-files-specific
+        uses: tj-actions/changed-files@v17
+        with:
+          files: '**'
+          files_ignore: test1/**
+          since_last_remote_commit: "true"
+
+      # - name: Test1
+      #   id: test1
+      #   env:
+      #     ABCDEF: ${{ secrets.ABCDEF }}
+      #     ROOM_ID: ${{ secrets.ROOM_ID }}
+      #     MESSAGE: ${{ github.event.head_commit.message }}
+      #     AUTHOR: ${{ github.event.head_commit.author.name }}
+      #   run: |
+      #     #echo "Hi!" >> test.txt
+      #     .github/workflows/get_diff.sh
+
+      - name: Test2
         run: |
-          #echo "Hi!" >> test.txt
-          .github/workflows/get_diff.sh
+          echo "git diff (modified files(acmrd)) : ${{ steps.changed-files-specific.outputs.other_modified_files }}"
+          echo "git diff (modified files(acmr)) : ${{ steps.changed-files-specific.outputs.other_changed_files }}" 
           
 
