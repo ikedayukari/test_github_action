@@ -16,19 +16,19 @@ jobs:
       - name: Test
         run: echo ${{ steps.check_commits_count.outputs.commits_count }}
 
-      # - name: Checkout
-      #   uses: actions/checkout@v3
-      #   with:
-      #     ref: ${{ env.BRANCH }}
-      #     fetch-depth: ${{ steps.check_commits_count.outputs.commits_count }}
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ env.BRANCH }}
+          fetch-depth: ${{ steps.check_commits_count.outputs.commits_count }}
 
-      # - name: Get specific changed files
-      #   id: changed-files-specific
-      #   uses: tj-actions/changed-files@v34
-      #   with:
-      #     files: '**'
-      #     files_ignore: test1/**
-      #     since_last_remote_commit: "true"
+      - name: Get specific changed files
+        id: changed-files-specific
+        uses: tj-actions/changed-files@v34
+        with:
+          files: '**'
+          files_ignore: test1/**
+          since_last_remote_commit: "true"
 
       # - name: Test1
       #   id: test1
@@ -41,9 +41,9 @@ jobs:
       #     #echo "Hi!" >> test.txt
       #     .github/workflows/get_diff.sh
 
-      # - name: Test2
-      #   run: |
-      #     echo "git diff (modified files(acmrd)) : ${{ steps.changed-files-specific.outputs.other_modified_files }}"
-      #     echo "git diff (modified files(acmr)) : ${{ steps.changed-files-specific.outputs.other_changed_files }}" 
+      - name: Test2
+        run: |
+          echo "git diff (modified files(acmrd)) : ${{ steps.changed-files-specific.outputs.other_modified_files }}"
+          echo "git diff (modified files(acmr)) : ${{ steps.changed-files-specific.outputs.other_changed_files }}" 
           
 
