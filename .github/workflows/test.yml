@@ -16,6 +16,11 @@ jobs:
       - name: Test
         run: echo ${{ steps.check_commits_count.outputs.commits_count }}
 
+      - name: Setup
+        run: |
+          git config diff.renames false
+          git status
+
       - name: Checkout
         uses: actions/checkout@v3
         with:
