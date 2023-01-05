@@ -11,8 +11,8 @@ jobs:
       - name: Check Commits Count
         id: check_commits_count
         run: |
-          cat << EOS > commits.json
-          '${{ toJSON(github.event.commits) }}'
+          cat << 'EOS' > commits.json
+          ${{ toJSON(github.event.commits) }}
           EOS
 
       - name: Test
