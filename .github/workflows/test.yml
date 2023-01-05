@@ -11,9 +11,11 @@ jobs:
       - name: Check Commits Count
         id: check_commits_count
         run: |
-          echo '${{ toJSON(github.event.commits) }}' | sed -e 's/'\''//g'
-          echo 'aaaaaa'
-          echo "commits_count=$(echo "$(( 2 + $(echo '${{ toJSON(github.event.commits) }}' | sed -e 's/'\''//g' | jq 'length')))")" >> $GITHUB_OUTPUT
+          cat << EOS > commits.json
+          ${{ toJSON(github.event.commits) }}
+          EOS
+          sed -i -e 's/'\''//g' commits.json
+          echo "commits_count=$(echo "$(( 2 + $(cat commits.json | jq 'length')))")" >> $GITHUB_OUTPUT
 
       - name: Test
         run: echo ${{ steps.check_commits_count.outputs.commits_count }}
