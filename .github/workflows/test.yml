@@ -12,6 +12,7 @@ jobs:
         id: check_commits_count
         run: |
           echo '${{ toJSON(github.event.commits) }}' | sed -e 's/'\''//g'
+          echo 'aaaaaa'
           echo "commits_count=$(echo "$(( 2 + $(echo '${{ toJSON(github.event.commits) }}' | sed -e 's/'\''//g' | jq 'length')))")" >> $GITHUB_OUTPUT
 
       - name: Test
