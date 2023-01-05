@@ -11,10 +11,10 @@ jobs:
       - name: Check Commits Count
         id: check_commits_count
         run: |
-          cat << EOS > test.json
+          cat << EOS > commits.json
           ${{ toJSON(github.event.commits) }}
           EOS
-          echo "commits_count=$(echo "$(( 2 + $(cat test.json | jq 'length')))")" >> $GITHUB_OUTPUT
+          echo "commits_count=$(echo "$(( 2 + $(cat commits.json | jq 'length')))")" >> $GITHUB_OUTPUT
           
 
       - name: Test
