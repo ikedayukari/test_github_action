@@ -14,8 +14,8 @@ jobs:
           cat << EOS > commits.json
           ${{ toJSON(github.event.commits) }}
           EOS
-          sed -i -e 's/'\''//g' commits.json
-          echo "commits_count=$(echo "$(( 2 + $(printf '%s' $(cat commits.json) | jq 'length')))")" >> $GITHUB_OUTPUT
+          # sed -i -e 's/'\''//g' commits.json
+          # echo "commits_count=$(echo "$(( 2 + $(echo '$(<commits.json)' | jq 'length')))")" >> $GITHUB_OUTPUT
 
       - name: Test
         run: echo ${{ steps.check_commits_count.outputs.commits_count }}
