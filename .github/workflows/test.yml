@@ -8,17 +8,16 @@ jobs:
       BRANCH: ${{ github.ref_name }}
 
     steps:
-      - name: Test
+      - name: Check commits count
+        id: check_commits_count
         run: |
-          echo "${{ join(github.event.commits.*.id, ',') }}" | tr ',' '\n' | grep -c ''
-          echo "$(( 2 + $(echo '${{ join(github.event.commits.*.id, '\n') }}' | grep -c '')))"
-          echo "commits_count=$(echo "$(( 2 + $(echo "${{ join(github.event.commits.*.id, '\n') }}" | grep -c '')))")" >> $GITHUB_OUTPUT
+          echo "commits_count=$(echo "$(( 2 + $(echo "${{ join(github.event.commits.*.id, ',') }}" | tr ',' '\n' | grep -c '')))")" >> $GITHUB_OUTPUT
 
       - name: Checkout
         uses: actions/checkout@v3
         with:
           ref: ${{ env.BRANCH }}
-          fetch-depth: ${{ github.event.size }}
+          fetch-depth: ${{ steps.check_commits_count.outputs.commits_count }}
 
       - name: Setup
         run: |
