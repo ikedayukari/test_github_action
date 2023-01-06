@@ -8,23 +8,14 @@ jobs:
       BRANCH: ${{ github.ref_name }}
 
     steps:
-      - name: Check Commits Count
-        id: check_commits_count
-        run: |
-          cat << 'EOS' > commits.json
-          ${{ toJSON(github.event.commits) }}
-          EOS
-          sed -i -e 's/'\''//g' commits.json
-          # echo "commits_count=$(echo "$(( 2 + $(printf '%s' $(cat commits.json) | jq 'length')))")" >> $GITHUB_OUTPUT
-
       - name: Test
-        run: echo ${{ steps.check_commits_count.outputs.commits_count }}
+        run: echo ${{ github.event.size }}
 
       - name: Checkout
         uses: actions/checkout@v3
         with:
           ref: ${{ env.BRANCH }}
-          fetch-depth: ${{ steps.check_commits_count.outputs.commits_count }}
+          fetch-depth: ${{ github.event.size }}
 
       - name: Setup
         run: |
