@@ -10,8 +10,7 @@ jobs:
     steps:
       - name: Test
         run: |
-          echo ${{ github.event.size }}
-          echo ${{ github.event.distinct_size }}
+          cat $GITHUB_EVENT_PATH
 
       - name: Checkout
         uses: actions/checkout@v3
