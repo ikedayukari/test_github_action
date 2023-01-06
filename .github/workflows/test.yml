@@ -9,7 +9,9 @@ jobs:
 
     steps:
       - name: Test
-        run: echo ${{ github.event.size }}
+        run: |
+          echo ${{ github.event.size }}
+          echo ${{ github.event.distinct_size }}
 
       - name: Checkout
         uses: actions/checkout@v3
