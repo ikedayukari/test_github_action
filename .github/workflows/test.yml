@@ -11,7 +11,7 @@ jobs:
       - name: Test
         run: |
           echo "${{ join(github.event.commits.*.id, ',') }}" | tr ',' '\n' | grep -c ''
-          echo "$(( 2 + $(echo '${{ join(github.event.commits.*.id, ',') }}' | grep -c '')))"
+          echo "$(( 2 + $(echo '${{ join(github.event.commits.*.id, '\n') }}' | grep -c '')))"
           echo "commits_count=$(echo "$(( 2 + $(echo "${{ join(github.event.commits.*.id, '\n') }}" | grep -c '')))")" >> $GITHUB_OUTPUT
 
       - name: Checkout
