@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Test
         run: |
-          echo ${{ github.event.commits[@] }}
+          echo "${{ join(github.event.commits.*.id, ' ') }}"
 
       - name: Checkout
         uses: actions/checkout@v3
