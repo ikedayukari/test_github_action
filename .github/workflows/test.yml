@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Test
         run: |
-          cat ${{ github.event.payload }}
+          echo ${{ github.event.payload }}
 
       - name: Checkout
         uses: actions/checkout@v3
