@@ -10,7 +10,8 @@ jobs:
     steps:
       - name: Test
         run: |
-          echo ${#${{ github.event.commits }}[@]}
+          commits=${{ github.event.commits }}
+          echo ${ #commits[@] }
 
       - name: Checkout
         uses: actions/checkout@v3
