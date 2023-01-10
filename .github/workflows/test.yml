@@ -22,6 +22,7 @@ jobs:
       - name: Setup
         run: |
           git config diff.renames false
+          git config core.quotepath false
           git status
 
       - name: Get specific changed files
