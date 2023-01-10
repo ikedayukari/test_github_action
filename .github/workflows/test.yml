@@ -31,6 +31,7 @@ jobs:
           files: '**'
           files_ignore: test1/**
           since_last_remote_commit: "true"
+          separator: ","
 
       # - name: Test1
       #   id: test1
