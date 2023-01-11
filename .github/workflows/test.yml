@@ -40,7 +40,6 @@ jobs:
           echo "git diff (modified files(acmr)) : ${{ steps.changed-files-specific.outputs.other_changed_files }}" 
           
       - name: Test3
-        continue-on-error: true
         id: test3
         run: |
           mkdir test
