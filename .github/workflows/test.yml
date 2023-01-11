@@ -43,11 +43,10 @@ jobs:
         id: test3
         run: |
           mkdir test
-          # mkdir test
+          mkdir test
           echo "ok"
 
       - name: Test1
-        if: ${{ success() || failure() }}
         id: test1
         env:
           ABCDEF: ${{ secrets.ABCDEF }}
